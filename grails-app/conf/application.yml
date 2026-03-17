@@ -8,3 +8,7 @@ info:
         name: '@info.app.name@'
         version: '@info.app.version@'
         grailsVersion: '@info.app.grailsVersion@'
+biocache:
+    downloads:
+        minimal:
+            defaultFields: "datasetKey, occurrenceID, basisOfRecord, institutionCode, collectionCode, catalogNumber, license, datasetID, datasetName, scientificName, taxonRank, vernacularName, verbatimScientificName, decimalLatitude, decimalLongitude, coordinateUncertaintyInMeters, countryCode, stateProvince, locality, eventDate, day, month, year, verbatimEventDate, individualCount, occurrenceStatus, recordedBy, identifiedBy, sex, behaviour, establishmentMeans, degreeOfEstablishment, dynamicProperties, identificationVerificationStatus, samplingProtocol"
