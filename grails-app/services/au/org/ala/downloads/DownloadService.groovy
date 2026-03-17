@@ -44,7 +44,13 @@ class DownloadService {
                 // DwC download
                 downloadParams.fields = biocacheService.getDwCFields()
                 triggerOfflineDownload(downloadParams)
-            } else if (downloadParams.downloadFormat == DownloadFormat.LEGACY.format) {
+            } else if(downloadParams.downloadFormat == DownloadFormat.MINIMAL.format) {
+                // Minimal download
+                downloadParams.fields = grailsApplication.config.biocache.downloads.minimal.defaultFields?: ""
+                downloadParams.dwcHeaders = false
+                triggerOfflineDownload(downloadParams)
+            }
+            else if (downloadParams.downloadFormat == DownloadFormat.LEGACY.format) {
                 // Legacy download
                 downloadParams.extra = grailsApplication.config.biocache.downloads.extra?: ""
                 downloadParams.fields = grailsApplication.config.downloads.legacy.defaultFields?: ""
