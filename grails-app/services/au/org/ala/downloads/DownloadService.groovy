@@ -46,7 +46,7 @@ class DownloadService {
                 triggerOfflineDownload(downloadParams)
             } else if(downloadParams.downloadFormat == DownloadFormat.MINIMAL.format) {
                 // Minimal download
-                downloadParams.fields = grailsApplication.config.biocache.downloads.minimal.defaultFields?: ""
+                downloadParams.fields = grailsApplication.config.downloads.minimal.defaultFields?: ""
                 downloadParams.dwcHeaders = false
                 triggerOfflineDownload(downloadParams)
             }
