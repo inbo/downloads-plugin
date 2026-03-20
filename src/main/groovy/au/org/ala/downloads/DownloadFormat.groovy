@@ -23,8 +23,8 @@ import groovy.util.logging.Slf4j
  */
 @Slf4j
 enum DownloadFormat {
-    DWC("dwc"),
     MINIMAL("minimal"),
+    DWC("dwc"),
     LEGACY("legacy"),
     CUSTOM("custom")
 
