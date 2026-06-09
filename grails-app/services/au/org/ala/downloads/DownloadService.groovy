@@ -144,20 +144,27 @@ class DownloadService {
     }
 
     /**
-     * Get the list of reason codes from logger system
-     * TODO: provide option to read this from a config file
+     * Retrieves the list of available logger reason codes.
      *
-     * @return
+     * The logger service is the primary source of reason codes. In the event of
+     * a communication failure or service outage, a configured fallback list is
+     * returned to ensure users can continue submitting forms that require a
+     * reason code.
+     *
+     * @return a list of available logger reason codes
      */
-    @Cacheable('longTermCache')
     List getLoggerReasons() {
         def url = "${grailsApplication.config.logger.baseUrl}/logger/reasons"
         try {
             webService.get(url, [:], ContentType.APPLICATION_JSON, false, false).resp.findAll { !it.deprecated } // skip deprecated reason codes
         } catch (Exception ex) {
-            log.error "Error calling logger service: ${ex.message}", ex
-            throw new Exception("Error fetching logger reasons")
+            log.error "Error calling logger service: ${ex.message}, using configured fallback reasons", ex
+            getFallbackReasons()
         }
+    }
+
+    List getFallbackReasons() {
+        grailsApplication.config.logger.fallbackReasons ?: []
     }
 
     /**
